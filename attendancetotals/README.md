@@ -4,21 +4,9 @@ A `mod_customcert` element that displays a student's attendance totals -
 Semester 1, Semester 2, and Total counts of Present / Late / Unexcused
 Absent / Excused Absent - report-card style, on a certificate.
 
-This plugin is **fully self-contained** - it does not require
-block_attendance_summary. It has its own copy of the attendance-fetching
-logic (same P/L/UA/EA acronym matching, same semester bucketing) and its
-own semester-date settings, mirroring what block_attendance_summary does,
-so the numbers agree - but each plugin can be installed/updated
-independently.
+## Requirements
 
-## Important difference from Quarterly totals
-
-Unlike `customcertelement_quarterlytotals` (one instance per course),
-this element is **not per-course** - it sums attendance across every
-`mod_attendance` activity in every course the student is enrolled in,
-exactly like your `block_attendance_summary` dashboard block does. So you
-only need to drag **one** "Attendance totals" element onto your
-certificate template, not one per course.
+This plugin requires `mod_attendance` to work in order to display attendance correctly
 
 ## How it works
 
@@ -32,33 +20,31 @@ certificate template, not one per course.
   example.
 - Every cell has an explicit width percentage, so the table stays a
   uniform size regardless of the numbers shown.
-- Colours are set once, site-wide, via **Site administration > Plugins >
+- Colors are set once, site-wide, via **Site administration > Plugins >
   Activity modules > Certificate** (search "attendancetotals" in the
   admin settings search box if you can't find it):
-  - Heading text colour (row/column labels)
-  - Heading background colour
-  - Value text colour
-  - Border colour
+  - Heading text color (row/column labels)
+  - Heading background color
+  - Value text color
+  - Border color
   - Row label column width (%)
 
 ## Semester dates
 
-Just like block_attendance_summary, attendance needs to be split into
-Semester 1 / Semester 2 using start/end dates.
+Attendance will be split into Semester 1 / Semester 2 using start/end dates.
 
 **If `block_attendance_summary` is installed and has its semester dates
-set**, this element reads them automatically - the principal only sets
+set**, this element reads them automatically - the system administrator only sets
 dates in one place (the block's settings), and this element stays in
 sync with no extra work.
 
 This element also has its own semester date fields (same settings page as
-the colours, under a "Semester dates (fallback)" heading), used only:
-- for any individual date left blank on the block's settings page, or
-- entirely, if `block_attendance_summary` isn't installed at all.
+the colours, under a "Semester dates (fallback)" heading), used if you do not
+already have `block_attendance_summar` installed.
 
-If neither source has a date set, that semester's row will show 0s
-(the Total row is still accurate either way, since it doesn't depend on
-semester dates).
+If neither source has a date set, that semester's row will show 0s,
+However the Total row is still accurate either way, since it doesn't depend on
+semester dates.
 
 ## Installation - via the "Install plugins" upload page
 
